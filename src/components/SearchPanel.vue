@@ -13,7 +13,7 @@
           Full time only
         </label>
 
-        <button :disabled="hasNoSearchData" type="button" class="btn btn-primary" @click.prevent="getSearchResults">Search</button>
+        <button type="button" class="btn btn-primary" @click.prevent="getSearchResults">Search</button>
       </div>
     </div>
   </div>
@@ -40,7 +40,9 @@ export default {
   },
   computed: {
     ...mapGetters({
-      search: 'search'
+      search: 'search',
+      nextPage: 'nextPage',
+      moreDataExist: 'moreDataExist'
     }),
     hasNoSearchData () {
       return _isEmpty(this.searchData.description) &&
@@ -51,7 +53,10 @@ export default {
   methods: {
     ...mapActions({
       setSearch: 'setSearch',
-      setJobsList: 'setJobsList'
+      setJobsList: 'setJobsList',
+      setNextPage: 'setNextPage',
+      setMoreDataExist: 'setMoreDataExist',
+      resetSearchData: 'resetSearchData'
     }),
     async onMounted () {
       this.searchData = this.search
@@ -60,6 +65,7 @@ export default {
       }
     },
     getSearchResults () {
+      this.resetSearchData()
       const searchPayload = {
         search: this.searchData
       }

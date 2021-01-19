@@ -11,7 +11,9 @@ const store = new Vuex.Store({
       location: '',
       fullTimeOnly: false
     },
-    jobsList: []
+    jobsList: [],
+    nextPage: 0,
+    moreDataExist: false
   },
   mutations: {
     setTheme (state, themePayload) {
@@ -24,7 +26,28 @@ const store = new Vuex.Store({
     },
     setJobsList (state, jobsListPayload) {
       const { jobsList } = jobsListPayload
-      state.jobsList = jobsList
+      const currentJobs = state.jobsList
+      state.jobsList = [
+        ...currentJobs,
+        ...jobsList
+      ]
+    },
+    setNextPage (state, nextPagePayload) {
+      const { nextPage } = nextPagePayload
+      state.nextPage = nextPage
+    },
+    setMoreDataExist (state, moreDataExistPayload) {
+      const { moreDataExist } = moreDataExistPayload
+      state.moreDataExist = moreDataExist
+    },
+    resetSearchData (state) {
+      state.search.description = ''
+      state.search.location = ''
+      state.search.fullTimeOnly = false
+
+      state.jobsList = []
+      state.nextPage = 0
+      state.moreDataExist = false
     }
   },
   actions: {
@@ -36,6 +59,15 @@ const store = new Vuex.Store({
     },
     setJobsList ({ commit }, jobsListPayload) {
       commit('setJobsList', jobsListPayload)
+    },
+    setNextPage ({ commit }, nextPagePayload) {
+      commit('setNextPage', nextPagePayload)
+    },
+    setMoreDataExist ({ commit }, moreDataExistPayload) {
+      commit('setMoreDataExist', moreDataExistPayload)
+    },
+    resetSearchData ({ commit }) {
+      commit('resetSearchData')
     }
   },
   getters: {
@@ -47,6 +79,12 @@ const store = new Vuex.Store({
     },
     jobsList: state => {
       return state.jobsList
+    },
+    nextPage: state => {
+      return state.nextPage
+    },
+    moreDataExist: state => {
+      return state.moreDataExist
     }
   }
 })

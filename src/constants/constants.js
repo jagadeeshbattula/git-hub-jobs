@@ -11,9 +11,12 @@ const GIT_HUB_JOBS_URL = 'https://jobs.github.com/positions.json'
 
 const GIT_HUB_JOB_DETAILS_URL = 'https://jobs.github.com/positions/'
 
+const DEFAULT_PAGE_SIZE = 50
+
 export default {
   CHECKBOX_TOGGLE_COLORS,
   PREFIX,
   GIT_HUB_JOBS_URL,
-  GIT_HUB_JOB_DETAILS_URL
+  GIT_HUB_JOB_DETAILS_URL,
+  DEFAULT_PAGE_SIZE
 }

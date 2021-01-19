@@ -36,9 +36,6 @@ export default {
       isDarkTheme: 'isDarkTheme'
     })
   },
-  mounted () {
-    this.onMounted()
-  },
   methods: {
     ...mapActions({
       setTheme: 'setTheme'
@@ -54,20 +51,6 @@ export default {
         document.body.classList.toggle('light-mode')
       } else if (currentTheme === 'light') {
         document.body.classList.toggle('dark-mode')
-      }
-    },
-    onMounted () {
-      window.matchMedia('(prefers-color-scheme: dark)').addListener(e => {
-        if (e.matches) {
-          console.log('dark mode is enabled')
-        } else {
-          console.log('dark mode is disabled')
-        }
-      })
-      if (window.matchMedia('prefers-color-scheme: dark').matches) {
-        // It's a dark theme...
-      } else {
-        // It's not a dark theme...
       }
     }
   }
