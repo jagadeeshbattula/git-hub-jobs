@@ -77,4 +77,10 @@ export default {
   display: inline-block;
   float: right;
 }
+
+@media screen and (max-width: 600px) {
+  .app-header {
+    border-radius: 0;
+  }
+}
 </style>

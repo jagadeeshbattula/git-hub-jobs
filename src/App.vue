@@ -32,4 +32,32 @@ export default {
   color: #000000 !important;
   /*color: #ffffff !important;*/
 }
+
+@media (prefers-color-scheme: dark) {
+  .app-background-color {
+    background-color:  #19212D !important;
+  }
+
+  .inner-background-color {
+    background-color:  #131822 !important;
+  }
+
+  .text-color {
+    color: #ffffff !important;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  .app-background-color {
+    background-color:  #F5F6F8 !important;
+  }
+
+  .inner-background-color {
+    background-color:  #FFFFFF !important;
+  }
+
+  .text-color {
+    color: #000000 !important;
+  }
+}
 </style>
