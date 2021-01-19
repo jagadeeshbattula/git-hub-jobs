@@ -42,11 +42,13 @@ export default {
     ...mapGetters({
       search: 'search',
       nextPage: 'nextPage',
-      moreDataExist: 'moreDataExist'
+      moreDataExist: 'moreDataExist',
+      jobsList: 'jobsList'
     }),
     hasNoSearchData () {
       return _isEmpty(this.searchData.description) &&
         _isEmpty(this.searchData.location) &&
+        _isEmpty(this.jobsList) &&
         this.searchData.fullTimeOnly === false
     }
   },
