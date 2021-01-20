@@ -1,13 +1,16 @@
 <template>
-  <div id="app" data-theme="light" class="app-background-color text-color">
+  <div id="app" v-bind:app-background-color="setThemeAttribute" v-bind:text-color="setThemeAttribute">
     <router-view/>
   </div>
 </template>
 
 <script>
 
+import SharedMixin from '@/mixins/shared'
+
 export default {
-  name: 'App'
+  name: 'App',
+  mixins: [SharedMixin]
 }
 </script>
 
@@ -18,46 +21,27 @@ export default {
   -moz-osx-font-smoothing: grayscale;
 }
 
-.app-background-color {
+[app-background-color="light"]  {
   background-color:  #F5F6F8 !important;
-  /*background-color:  #19212D !important;*/
 }
 
-.inner-background-color {
+[app-background-color="dark"]  {
+  background-color:  #19212D !important;
+}
+
+[inner-background-color="light"]  {
   background-color:  #FFFFFF !important;
-  /*background-color:  #131822 !important;*/
 }
 
-.text-color {
+[inner-background-color="dark"]  {
+  background-color:  #131822 !important;
+}
+
+[text-color="light"]  {
   color: #000000 !important;
-  /*color: #ffffff !important;*/
 }
 
-@media (prefers-color-scheme: dark) {
-  .app-background-color {
-    background-color:  #19212D !important;
-  }
-
-  .inner-background-color {
-    background-color:  #131822 !important;
-  }
-
-  .text-color {
-    color: #ffffff !important;
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  .app-background-color {
-    background-color:  #F5F6F8 !important;
-  }
-
-  .inner-background-color {
-    background-color:  #FFFFFF !important;
-  }
-
-  .text-color {
-    color: #000000 !important;
-  }
+[text-color="dark"]  {
+  color: #ffffff !important;
 }
 </style>

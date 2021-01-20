@@ -1,23 +1,23 @@
 <template>
   <div class="container search-container">
-    <div class="row search-row inner-background-color text-color">
+    <div v-bind:inner-background-color="setThemeAttribute" v-bind:text-color="setThemeAttribute" class="row search-row">
       <div class="form-inline">
         <div class="input-group m-2 mr-sm-2">
           <div class="input-group-prepend">
             <div class="input-group-text"><font-awesome-icon icon="search" /></div>
           </div>
-          <input type="text" class="form-control inner-background-color" id="job-description" v-model="searchData.description" placeholder="Job description">
+          <input v-bind:inner-background-color="setThemeAttribute" type="text" class="form-control" id="job-description" v-model="searchData.description" placeholder="Job description">
         </div>
 
         <div class="input-group m-2 mr-sm-2">
           <div class="input-group-prepend">
             <div class="input-group-text"><font-awesome-icon icon="map-marker" /></div>
           </div>
-          <input type="text" class="form-control inner-background-color" id="job-location" v-model="searchData.location" placeholder="Job location">
+          <input v-bind:inner-background-color="setThemeAttribute" type="text" class="form-control" id="job-location" v-model="searchData.location" placeholder="Job location">
         </div>
 
         <div class="form-check m-2 mr-sm-2">
-          <input class="form-check-input inner-background-color" type="checkbox" v-model="searchData.fullTimeOnly" id="full-time-jobs">
+          <input v-bind:inner-background-color="setThemeAttribute" class="form-check-input" type="checkbox" v-model="searchData.fullTimeOnly" id="full-time-jobs">
           <label class="form-check-label" for="full-time-jobs">
             Full time only
           </label>
@@ -38,11 +38,13 @@ import ApiHelper from '@/helpers/apis'
 import { isEmpty as _isEmpty } from 'lodash'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faSearch, faMapMarker } from '@fortawesome/free-solid-svg-icons'
+import SharedMixin from '@/mixins/shared'
 
 library.add(faSearch, faMapMarker)
 
 export default {
   name: 'SearchPanel',
+  mixins: [SharedMixin],
   data () {
     return {
       searchData: {

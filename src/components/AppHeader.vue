@@ -1,13 +1,13 @@
 <template>
   <div class="app-header">
     <h4 class="app-header-title">Github Jobs</h4>
-<!--    <div class="app-header-theme-toggle">-->
-<!--      <font-awesome-icon icon="sun" />-->
-<!--      <toggle-button :value="isDarkTheme"-->
-<!--                     :color="checkboxColorOptions"-->
-<!--                     @change="toggleTheme"/>-->
-<!--      <font-awesome-icon icon="moon" />-->
-<!--    </div>-->
+    <div class="app-header-theme-toggle">
+      <font-awesome-icon icon="sun" />
+      <toggle-button :value="isDarkTheme"
+                     :color="checkboxColorOptions"
+                     @change="toggleTheme"/>
+      <font-awesome-icon icon="moon" />
+    </div>
   </div>
 </template>
 
@@ -45,13 +45,6 @@ export default {
         isDarkTheme: (this.isDarkTheme === false)
       }
       this.setTheme(themePayload)
-      const currentTheme = localStorage.getItem('theme')
-
-      if (currentTheme === 'dark') {
-        document.body.classList.toggle('light-mode')
-      } else if (currentTheme === 'light') {
-        document.body.classList.toggle('dark-mode')
-      }
     }
   }
 }

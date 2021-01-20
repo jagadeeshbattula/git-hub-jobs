@@ -1,5 +1,5 @@
 <template>
-  <div class="card job-post-container inner-background-color m-4 col-lg-4" @click.prevent="getJobDetails()">
+  <div v-bind:inner-background-color="setThemeAttribute" class="card job-post-container m-4 col-lg-4" @click.prevent="getJobDetails()">
     <div class="post-logo-container">
       <img :src="companyLogo" alt="No logo" class="post-logo-image">
     </div>
@@ -20,10 +20,12 @@
 
 <script>
 import moment from 'moment'
+import SharedMixin from '@/mixins/shared'
 
 export default {
 
   name: 'JobPost',
+  mixins: [SharedMixin],
   props: {
     id: {
       type: String,

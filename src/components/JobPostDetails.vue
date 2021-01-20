@@ -2,7 +2,7 @@
   <div>
     <app-header />
     <div class="container search-container">
-      <nav class="navbar navbar-expand-lg static-top inner-background-color">
+      <nav v-bind:inner-background-color="setThemeAttribute" class="navbar navbar-expand-lg static-top">
         <div class="container">
           <div class="header-logo">
             <img class="post-logo-image" :src="jobDetails.company_logo" alt="">
@@ -15,7 +15,7 @@
         </div>
       </nav>
 
-      <div class="mt-5 p-3 inner-background-color">
+      <div v-bind:inner-background-color="setThemeAttribute" class="mt-5 p-3">
         <div>
           <div class="body-company-details mb-5">
             <div class="small"> {{getPostTime()}} . {{jobDetails.type}}</div>
@@ -29,14 +29,14 @@
         </div>
       </div>
 
-      <div class="card mt-5 inner-background-color">
+      <div v-bind:inner-background-color="setThemeAttribute" class="card mt-5">
         <div class="card-body">
           <h5 class="card-title">How to Apply</h5>
           <p class="card-text" v-html="jobDetails.how_to_apply"></p>
         </div>
       </div>
 
-      <div class="card mt-5 inner-background-color">
+      <div v-bind:inner-background-color="setThemeAttribute" class="card mt-5">
         <div class="card-body">
           <div class="footer-company-details">
             <div class="font-weight-bolder">
@@ -57,10 +57,12 @@
 import AppHeader from '@/components/AppHeader'
 import ApiHelper from '@/helpers/apis'
 import moment from 'moment'
+import SharedMixin from '@/mixins/shared'
 
 export default {
   name: 'JobPostDetails',
   components: {AppHeader},
+  mixins: [SharedMixin],
   props: {},
   data () {
     return {
