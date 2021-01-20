@@ -12,7 +12,7 @@ const store = new Vuex.Store({
       fullTimeOnly: false
     },
     jobsList: [],
-    nextPage: 0,
+    nextPage: 1,
     moreDataExist: false
   },
   mutations: {
@@ -41,12 +41,8 @@ const store = new Vuex.Store({
       state.moreDataExist = moreDataExist
     },
     resetSearchData (state) {
-      state.search.description = ''
-      state.search.location = ''
-      state.search.fullTimeOnly = false
-
       state.jobsList = []
-      state.nextPage = 0
+      state.nextPage = 1
       state.moreDataExist = false
     }
   },

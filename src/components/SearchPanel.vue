@@ -1,19 +1,32 @@
 <template>
   <div class="container search-container">
     <div class="row search-row inner-background-color text-color">
-      <div class="col-lg-4 col-sm-12 mt-2 mb-2 p-0 border-right">
-        <input type="text" class="form-control border-0 inner-background-color text-color" id="job-description" placeholder="Job description" v-model="search.description">
-      </div>
-      <div class="col-lg-4 col-sm-12 mt-2 mb-2 p-0 border-right">
-        <input type="text" class="form-control border-0 inner-background-color text-color" id="job-location" placeholder="Job location" v-model="search.location">
-      </div>
-      <div class="col-lg-3 col-sm-12 form-check m-2 pt-1">
-        <input class="form-check-input mt-2 inner-background-color text-color" type="checkbox" v-model="search.fullTimeOnly" id="full-time-jobs">
-        <label class="form-check-label" for="full-time-jobs">
-          Full time only
-        </label>
+      <div class="form-inline">
+        <div class="input-group m-2 mr-sm-2">
+          <div class="input-group-prepend">
+            <div class="input-group-text"><font-awesome-icon icon="search" /></div>
+          </div>
+          <input type="text" class="form-control inner-background-color" id="job-description" v-model="searchData.description" placeholder="Job description">
+        </div>
 
-        <button type="button" class="btn btn-primary" @click.prevent="getSearchResults">Search</button>
+        <div class="input-group m-2 mr-sm-2">
+          <div class="input-group-prepend">
+            <div class="input-group-text"><font-awesome-icon icon="map-marker" /></div>
+          </div>
+          <input type="text" class="form-control inner-background-color" id="job-location" v-model="searchData.location" placeholder="Job location">
+        </div>
+
+        <div class="form-check m-2 mr-sm-2">
+          <input class="form-check-input inner-background-color" type="checkbox" v-model="searchData.fullTimeOnly" id="full-time-jobs">
+          <label class="form-check-label" for="full-time-jobs">
+            Full time only
+          </label>
+        </div>
+
+        <div class="form-check m-2 mr-sm-2">
+          <button type="submit" class="btn btn-primary m-2" @click.prevent="getSearchResults">Submit</button>
+          <button v-show="!searchFieldsEmpty" type="button" class="btn btn-secondary m-2" @click.prevent="resetSearch">Clear</button>
+        </div>
       </div>
     </div>
   </div>
@@ -23,6 +36,10 @@
 import { mapGetters, mapActions } from 'vuex'
 import ApiHelper from '@/helpers/apis'
 import { isEmpty as _isEmpty } from 'lodash'
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faSearch, faMapMarker } from '@fortawesome/free-solid-svg-icons'
+
+library.add(faSearch, faMapMarker)
 
 export default {
   name: 'SearchPanel',
@@ -46,9 +63,11 @@ export default {
       jobsList: 'jobsList'
     }),
     hasNoSearchData () {
+      return this.searchFieldsEmpty && _isEmpty(this.jobsList)
+    },
+    searchFieldsEmpty () {
       return _isEmpty(this.searchData.description) &&
         _isEmpty(this.searchData.location) &&
-        _isEmpty(this.jobsList) &&
         this.searchData.fullTimeOnly === false
     }
   },
@@ -66,13 +85,26 @@ export default {
         await ApiHelper.getDefaultGeoLocation(this)
       }
     },
-    getSearchResults () {
+    async getSearchResults () {
       this.resetSearchData()
       const searchPayload = {
         search: this.searchData
       }
       this.setSearch(searchPayload)
-      ApiHelper.getJobsList(this)
+      await ApiHelper.getJobsList(this)
+    },
+    resetSearch () {
+      this.resetSearchData()
+      const emptySearchFields = {
+        description: '',
+        location: '',
+        fullTimeOnly: false
+      }
+      this.searchData = emptySearchFields
+      const searchPayload = {
+        search: emptySearchFields
+      }
+      this.setSearch(searchPayload)
     }
   }
 }

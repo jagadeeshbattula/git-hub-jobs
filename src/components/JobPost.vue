@@ -1,5 +1,5 @@
 <template>
-  <div class="job-post-container inner-background-color m-4 col-lg-4" @click.prevent="getJobDetails()">
+  <div class="card job-post-container inner-background-color m-4 col-lg-4" @click.prevent="getJobDetails()">
     <div class="post-logo-container">
       <img :src="companyLogo" alt="No logo" class="post-logo-image">
     </div>

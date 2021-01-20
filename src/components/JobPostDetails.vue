@@ -11,7 +11,7 @@
             <div class="font-weight-bolder"> {{ jobDetails.company }}</div>
             <div class="small"> {{ jobDetails.company_url }}</div>
           </div>
-          <button class="btn btn-primary header-button">Company Site</button>
+          <a :href="jobDetails.company_url" target="_blank" class="btn btn-primary header-button">Company Site</a>
         </div>
       </nav>
 
@@ -22,7 +22,7 @@
             <div class="font-weight-bolder"> {{ jobDetails.title }}</div>
             <div class="text-info small">{{ jobDetails.location }}</div>
           </div>
-          <button class="btn btn-primary float-right body-apply-button mb-5">Apply Now</button>
+          <a class="btn btn-primary float-right body-apply-button mb-5" :href="jobDetails.url" target="_blank">Apply Now</a>
         </div>
 
         <div class="mb-3 mt-5" v-html="jobDetails.description">
@@ -46,7 +46,7 @@
               {{ jobDetails.company_url }}
             </div>
           </div>
-          <button class="btn btn-primary float-right footer-apply-button">Apply Now</button>
+          <a class="btn btn-primary float-right footer-apply-button" :href="jobDetails.url" target="_blank">Apply Now</a>
         </div>
       </div>
     </div>
@@ -73,7 +73,8 @@ export default {
         type: '',
         title: '',
         description: '',
-        how_to_apply: ''
+        how_to_apply: '',
+        url: ''
       }
     }
   },
