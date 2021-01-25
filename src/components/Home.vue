@@ -13,12 +13,7 @@ import ListContainer from '@/components/ListContainer'
 
 export default {
   name: 'Home',
-  components: {SearchPanel, ListContainer, AppHeader},
-  data () {
-    return {
-    }
-  },
-  methods: {}
+  components: {SearchPanel, ListContainer, AppHeader}
 }
 </script>
 

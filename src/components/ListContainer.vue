@@ -2,7 +2,7 @@
   <div class="container jobs-list-container">
     <div class="jobs-list row">
       <job-post v-for="job in jobsList"
-                :key="job.id"
+                :key="getRandomId(job.id)"
                 v-bind="getJobPostProps(job)" />
     </div>
     <div v-if="moreDataExist" class="d-flex justify-content-center mt-5 pb-4">
@@ -15,14 +15,11 @@
 import JobPost from '@/components/JobPost'
 import { mapGetters, mapActions } from 'vuex'
 import ApiHelper from '@/helpers/apis'
+import { uniqueId as _uniqueId, random as _random } from 'lodash'
 
 export default {
   name: 'ListContainer',
   components: {JobPost},
-  data () {
-    return {
-    }
-  },
   computed: {
     ...mapGetters({
       search: 'search',
@@ -52,6 +49,11 @@ export default {
     },
     fetchNextPage () {
       ApiHelper.getJobsList(this)
+    },
+    getRandomId (suffix) {
+      const randomNum = _random(1, new Date().getTime())
+      const key = `${this.componentUniqueKey}-${randomNum}-${suffix}`
+      return _uniqueId(key)
     }
   }
 }

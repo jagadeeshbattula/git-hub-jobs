@@ -13,7 +13,6 @@
 
 <script>
 
-import ToggleButton from 'vue-js-toggle-button'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faMoon, faSun } from '@fortawesome/free-solid-svg-icons'
 import { mapGetters, mapActions } from 'vuex'
@@ -23,9 +22,6 @@ library.add(faMoon, faSun)
 
 export default {
   name: 'AppHeader',
-  comments: {
-    ToggleButton
-  },
   data () {
     return {
       checkboxColorOptions: CONSTANTS.CHECKBOX_TOGGLE_COLORS

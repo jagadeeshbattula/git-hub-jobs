@@ -1,7 +1,7 @@
 <template>
   <div v-bind:inner-background-color="setThemeAttribute" class="card job-post-container m-4 col-lg-4" @click.prevent="getJobDetails()">
     <div class="post-logo-container">
-      <img :src="companyLogo" alt="No logo" class="post-logo-image">
+      <img v-if="companyLogo" :src="companyLogo" class="post-logo-image">
     </div>
     <div class="text-secondary small mt-2">
       <span>{{getPostTime()}}</span> . <span>{{type}}</span>

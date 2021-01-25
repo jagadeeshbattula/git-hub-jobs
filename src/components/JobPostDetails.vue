@@ -63,7 +63,6 @@ export default {
   name: 'JobPostDetails',
   components: {AppHeader},
   mixins: [SharedMixin],
-  props: {},
   data () {
     return {
       id: this.$route.params.id,
@@ -82,8 +81,6 @@ export default {
   },
   mounted () {
     this.onMounted()
-  },
-  computed: {
   },
   methods: {
     onMounted () {
